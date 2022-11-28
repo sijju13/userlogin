@@ -29,7 +29,7 @@ public class AdminController {
 		}
 		
 		@GetMapping("/view/{userid}")
-		public User getProduct(@PathVariable int userid)
+		public User getUser(@PathVariable int userid)
 		{
 			Optional<User> task = userrep.findById(userid);
 			User retreiveobj = null;
@@ -43,7 +43,7 @@ public class AdminController {
 		
 		// add users
 		@PostMapping("/adduser")
-		public User placeOrder(@RequestBody User obj) {
+		public User insertUser(@RequestBody User obj) {
 			User p = userrep.save(obj);
 			return p;
 		}
@@ -52,7 +52,7 @@ public class AdminController {
 		
 		// update user
 		@PutMapping("/update")
-		public User updateProduct(@RequestBody User obj) {
+		public User updateUser(@RequestBody User obj) {
 			int pid = obj.getUserid();
 			Optional<User> user = userrep.findById(pid);
 			User update = null;
@@ -70,7 +70,7 @@ public class AdminController {
 		
 		
 		@DeleteMapping("/delete/{userid}")
-		public void deleteProduct(@PathVariable int userid) {
+		public void deleteUser(@PathVariable int userid) {
 			userrep.deleteById(userid);
 		}
 	}
