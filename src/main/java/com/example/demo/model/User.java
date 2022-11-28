@@ -1,21 +1,33 @@
 package com.example.demo.model;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="Users_created")
 public class User {
-	
+	@Id
 	private int userid;
 	private String firstname;
 	private String lastname;
-	@Id
 	private String username;
 	private String password; 
+	@OneToMany(targetEntity = Product.class)
+	private List<Product> cart;
+	@JoinColumn(name="product_key", referencedColumnName="userid")
 	
 	
+	public List<Product> getCart() {
+		return cart;
+	}
+	public void setCart(List<Product> cart) {
+		this.cart = cart;
+	}
 	public int getUserid() {
 		return userid;
 	}
